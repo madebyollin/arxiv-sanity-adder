@@ -14,5 +14,8 @@
             "all_frames": true
         }
     ],
-    "web_accessible_resources": ["arxiv_sanity.js"]
+    "web_accessible_resources": ["arxiv_sanity.js"],
+    "background": {
+        "scripts": ["background.js"]
+    }
 }

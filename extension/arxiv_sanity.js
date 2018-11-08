@@ -19,13 +19,8 @@ document.body.appendChild(button);
 button.onclick = () => {
     // grab the pdf id
     const pid = /\/([0-9\.a-z]+)\.pdf/.exec(window.location.href)[1];
-    fetch("http://www.arxiv-sanity.com/libtoggle", {
-          method: "POST",
-          body: `pid=${encodeURIComponent(pid)}`,
-          headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(console.log);
+    console.log("Page script posted message");
+    window.postMessage({message: 'add_id', data: pid}, window.origin);
 }
 
 var last_mouse_move = null;
@@ -37,7 +32,6 @@ function hideButton() {
     button.style.opacity = 0;
 }
 
-// god damn
 document.body.style.minHeight = "100%";
 document.body.addEventListener("mousemove", () => {
     last_mouse_move = new Date();
@@ -46,7 +40,6 @@ document.body.addEventListener("mousemove", () => {
         displaying = true;
     }
 });
-// lol bad code
 window.setInterval(() => {
     let now = new Date();
     if (!last_mouse_move || (now.getTime() - last_mouse_move.getTime()) > 2 * 1000) {
