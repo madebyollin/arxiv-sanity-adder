@@ -10,7 +10,10 @@ window.addEventListener("message", function(message) {
     // We only accept messages from ourselves
     if (message.source != window) {
         return;
-	}
-    console.log("Content script received message: " + JSON.stringify(message.data, null,4));
-    chrome.runtime.sendMessage({ message: "add_id", data: message.data });
+    }
+    console.log("Content script received message: " + JSON.stringify(message.data, null, 4));
+    chrome.runtime.sendMessage({
+        message: "add_id",
+        data: message.data
+    });
 });

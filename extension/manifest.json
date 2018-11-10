@@ -3,17 +3,15 @@
     "name": "Arxiv-Sanity",
     "description": "Adds a button to save arxiv pdfs to your library",
     "version": "1.0",
-    "content_scripts": [
-        {
-            "matches": [
-                "http://arxiv.org/pdf/*",
-                "https://arxiv.org/pdf/*"
-            ],
-            "js": ["injector.js"],
-            "run_at": "document_end",
-            "all_frames": true
-        }
-    ],
+    "content_scripts": [{
+        "matches": [
+            "http://arxiv.org/pdf/*",
+            "https://arxiv.org/pdf/*"
+        ],
+        "js": ["injector.js"],
+        "run_at": "document_end",
+        "all_frames": true
+    }],
     "web_accessible_resources": ["arxiv_sanity.js"],
     "background": {
         "scripts": ["background.js"]

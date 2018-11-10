@@ -20,14 +20,19 @@ button.onclick = () => {
     // grab the pdf id
     const pid = /\/([0-9\.a-z]+)\.pdf/.exec(window.location.href)[1];
     console.log("Page script posted message");
-    window.postMessage({message: 'add_id', data: pid}, window.origin);
+    window.postMessage({
+        message: 'add_id',
+        data: pid
+    }, window.origin);
 }
 
 var last_mouse_move = null;
 var displaying = true;
+
 function showButton() {
-   button.style.opacity = 1; 
+    button.style.opacity = 1;
 }
+
 function hideButton() {
     button.style.opacity = 0;
 }
