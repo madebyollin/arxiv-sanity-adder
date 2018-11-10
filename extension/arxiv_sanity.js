@@ -1,5 +1,6 @@
 let button = document.createElement("div");
 button.textContent = "add to arXiv sanity";
+// TODO: move to external stylesheet, this is messy
 button.style = `
 font-family: Times;
 font-variant: small-caps;
@@ -19,7 +20,6 @@ document.body.appendChild(button);
 button.onclick = () => {
     // grab the pdf id
     const pid = /\/([0-9\.a-z]+)\.pdf/.exec(window.location.href)[1];
-    console.log("Page script posted message");
     window.postMessage({
         message: 'add_id',
         data: pid

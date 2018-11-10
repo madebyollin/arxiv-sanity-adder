@@ -1,5 +1,4 @@
 chrome.runtime.onMessage.addListener(function(message, callback) {
-    console.log("Background script received message ", message);
     if (message.message == "add_id") {
         fetch("http://www.arxiv-sanity.com/libtoggle", {
             method: "POST",
@@ -8,8 +7,6 @@ chrome.runtime.onMessage.addListener(function(message, callback) {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             mode: "no-cors"
-        }).then((response) => {
-
         });
     }
 });
