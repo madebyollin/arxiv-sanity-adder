@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Arxiv-Sanity",
-    "description": "Adds a button to save arxiv pdfs to your library",
+    "name": "arXiv-Sanity Adder",
+    "description": "Adds a button to save arXiv pdfs to your arXiv-sanity library",
     "version": "1.0",
     "content_scripts": [{
         "matches": [
