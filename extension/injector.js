@@ -7,11 +7,16 @@ function injectScript(file_path, tag) {
 }
 injectScript(chrome.extension.getURL('arxiv_sanity.js'), 'body');
 window.addEventListener("message", function(message) {
-    if (message.source != window) {
+    if (message.source != window || message.data.message != "toggle_id") {
         return;
     }
     chrome.runtime.sendMessage({
-        message: "add_id",
+        message: "toggle_id",
         data: message.data
+    }, messageResponse => {
+        window.postMessage({
+            "message": "toggle_result",
+            "data" : messageResponse
+        });
     });
 });

@@ -1,5 +1,7 @@
 let button = document.createElement("div");
-button.textContent = "add to arXiv sanity";
+const defaultButtonText = "add to arXiv sanity";
+const addedButtonText = "added to arXiv sanity";
+button.textContent = defaultButtonText;
 // TODO: move to external stylesheet, this is messy
 button.style = `
 font-family: Times;
@@ -21,10 +23,17 @@ button.onclick = () => {
     // grab the pdf id
     const pid = /\/([0-9\.a-z]+)\.pdf/.exec(window.location.href)[1];
     window.postMessage({
-        message: 'add_id',
+        message: 'toggle_id',
         data: pid
     }, window.origin);
 }
+
+window.addEventListener("message", (x) => {
+    if (x.data.message == "toggle_result") {
+        setButtonStyle(x.data.data);
+    }
+}, false);
+
 
 var last_mouse_move = null;
 var displaying = true;
@@ -35,6 +44,16 @@ function showButton() {
 
 function hideButton() {
     button.style.opacity = 0;
+}
+
+function setButtonStyle(result) {
+    if (result == "ON") {
+        button.style.background = "#0b903a";
+        button.textContent = addedButtonText;
+    } else if (result == "OFF") {
+        button.style.background = "black";
+        button.textContent = defaultButtonText;
+    }
 }
 
 document.body.style.minHeight = "100%";
