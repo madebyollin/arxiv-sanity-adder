@@ -1,22 +1,26 @@
 let button = document.createElement("div");
 const defaultButtonText = "add to arXiv sanity";
-const addedButtonText = "added to arXiv sanity";
+const addedButtonText = "✓";
 button.textContent = defaultButtonText;
 // TODO: move to external stylesheet, this is messy
 button.style = `
 font-family: Times;
 font-variant: small-caps;
-padding: 8px 24px;
+padding: 8px 16px;
 background: #202020;
 color: white;
-border-radius: 32px;
+border-radius: 48px;
 font-size: 1.0rem;
 position: fixed;
 left: 0;
 bottom: 0;
 margin: 16px;
-transition: 0.2s ease opacity;
+transition: 0.2s ease opacity, 0.5s ease background, 0.5s ease width, 0.25s ease color;
 cursor: pointer;
+height: 1.5em;
+line-height: 1.5em;
+width: 10em;
+text-align: center;
 `;
 document.body.appendChild(button);
 button.onclick = () => {
@@ -48,22 +52,31 @@ function hideButton() {
 
 function setButtonStyle(result) {
     if (result == "ON") {
-        button.style.background = "#0b903a";
+        button.style.background = "#00bf44";
+        button.style.width = "1em";
         button.textContent = addedButtonText;
+        button.style.color = "white";
     } else if (result == "OFF") {
         button.style.background = "black";
-        button.textContent = defaultButtonText;
+        button.style.color = "transparent";
+        button.style.width = "10em";
+        window.setTimeout(() => {
+            button.textContent = defaultButtonText;
+            button.style.color = "white";
+        }, 250);
     }
 }
 
-document.body.style.minHeight = "100%";
-document.body.addEventListener("mousemove", () => {
+function recordMouseAction() {
     last_mouse_move = new Date();
     if (!displaying) {
         showButton();
         displaying = true;
     }
-});
+}
+document.body.style.minHeight = "100%";
+document.body.addEventListener("mousemove", recordMouseAction);
+document.body.addEventListener("click", recordMouseAction);
 window.setInterval(() => {
     let now = new Date();
     if (!last_mouse_move || (now.getTime() - last_mouse_move.getTime()) > 2 * 1000) {
