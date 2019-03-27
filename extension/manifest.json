@@ -17,6 +17,7 @@
         "scripts": ["background.js"]
     },
     "permissions": [
-        "*://*.arxiv-sanity.com/*"
+        "*://*.arxiv-sanity.com/*",
+        "*://another-arxiv-sanity.site/*"
     ]
 }
