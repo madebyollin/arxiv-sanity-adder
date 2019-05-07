@@ -33,6 +33,7 @@ button.onclick = () => {
 }
 
 window.addEventListener("message", (x) => {
+    console.log("page js received:", x);
     if (x.data.message == "toggle_result") {
         setButtonStyle(x.data.data);
     }
@@ -64,6 +65,8 @@ function setButtonStyle(result) {
             button.textContent = defaultButtonText;
             button.style.color = "white";
         }, 250);
+    } else {
+        console.warn("Invalid result:", result);
     }
 }
 

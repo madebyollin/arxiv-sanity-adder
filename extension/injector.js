@@ -7,6 +7,7 @@ function injectScript(file_path, tag) {
 }
 injectScript(chrome.extension.getURL('arxiv_sanity.js'), 'body');
 window.addEventListener("message", function(message) {
+    console.log("injector received:", message);
     if (message.source != window || message.data.message != "toggle_id") {
         return;
     }
