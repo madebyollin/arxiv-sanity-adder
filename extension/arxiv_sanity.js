@@ -1,7 +1,8 @@
 let button = document.createElement("div");
 const defaultButtonText = "add to arXiv sanity";
-const addedButtonText = "✓";
-button.textContent = defaultButtonText;
+// const addedButtonText = "✓";
+const addedButtonText = "&#x2713";
+button.innerHTML = defaultButtonText;
 // TODO: move to external stylesheet, this is messy
 button.style = `
 font-family: Times;
@@ -55,14 +56,14 @@ function setButtonStyle(result) {
     if (result == "ON") {
         button.style.background = "#00bf44";
         button.style.width = "1em";
-        button.textContent = addedButtonText;
+        button.innerHTML = addedButtonText;
         button.style.color = "white";
     } else if (result == "OFF") {
         button.style.background = "black";
         button.style.color = "transparent";
         button.style.width = "10em";
         window.setTimeout(() => {
-            button.textContent = defaultButtonText;
+            button.innerHTML = defaultButtonText;
             button.style.color = "white";
         }, 250);
     } else {
